@@ -51,12 +51,14 @@ def sample_inv_wishart(alms, df):
 
 #Corresponds to the wikipedia notation
 def sample_inv_gamma(alms, alpha):
-    beta = np.sum(alms**2, 0)
+    beta = 0.5 * np.sum(alms**2, 0)
     return beta / sample_gamma(alpha, 1)
+#    return 1 / sample_gamma(alpha, 1/beta)
+#    return 1.0 / sample_gamma(alpha, beta)
 
 #Corresponds to the wikipedia notation
 def sample_gamma(alpha, beta):
-    return np.random.gamma(alpha, 1/beta)
+    return np.random.gamma(alpha, 1.0 / beta)
 
 def sample_alms(cls):
     alms = np.zeros((utils.get_num_modes(0, cls.shape[0]-1), cls.shape[1]))
