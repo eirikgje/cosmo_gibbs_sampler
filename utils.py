@@ -84,3 +84,6 @@ def convert_normalization(cls, lmax, mode='normalize'):
 
 def get_inverse_wishart_1d(newnu, scale, x):
     return scale**(newnu / 2) / (2 **(newnu / 2)) / gamma(newnu/2) / x ** ((newnu + 2) / 2) * np.exp(-0.5 * scale / x)
+
+def sampfile_to_samples(fname, lmax, dim):
+    return np.loadtxt(fname).reshape((-1, lmax+1, dim, dim))
